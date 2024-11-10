@@ -1,6 +1,6 @@
 'use client'
 
-import { FC, Suspense, useCallback } from 'react'
+import { FC, useCallback } from 'react'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select'
 import { useSearchParams, useRouter, usePathname } from 'next/navigation'
 
@@ -29,34 +29,32 @@ const Sort: FC = () => {
   }
 
   return (
-    <Suspense>
-      <div className="relative bg-neutral-50 dark:bg-neutral-900 pt-5 flex items-center justify-center gap-2 sm:gap-8 flex-col sm:flex-row">
-        <div className="flex items-center gap-2">
-          <p className="font-medium text-[14px]">Sort By</p>
-          <Select value={sortBy} onValueChange={handleSortByChange}>
-            <SelectTrigger className="w-[180px] bg-neutral-100 dark:bg-neutral-950">
-              <SelectValue placeholder="Select Sort" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="name">Name</SelectItem>
-              <SelectItem value="likes">Likes</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-        <div className="flex items-center gap-2">
-          <p className="font-medium text-[14px]">Order By</p>
-          <Select value={orderBy} onValueChange={handleOrderByChange}>
-            <SelectTrigger className="w-[180px] bg-neutral-100 dark:bg-neutral-950">
-              <SelectValue placeholder="Select Order" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="asc">Ascending</SelectItem>
-              <SelectItem value="desc">Descending</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
+    <div className="relative bg-neutral-50 dark:bg-neutral-900 pt-5 flex items-center justify-center gap-2 sm:gap-8 flex-col sm:flex-row">
+      <div className="flex items-center gap-2">
+        <p className="font-medium text-[14px]">Sort By</p>
+        <Select value={sortBy} onValueChange={handleSortByChange}>
+          <SelectTrigger className="w-[180px] bg-neutral-100 dark:bg-neutral-950">
+            <SelectValue placeholder="Select Sort" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="name">Name</SelectItem>
+            <SelectItem value="likes">Likes</SelectItem>
+          </SelectContent>
+        </Select>
       </div>
-    </Suspense>
+      <div className="flex items-center gap-2">
+        <p className="font-medium text-[14px]">Order By</p>
+        <Select value={orderBy} onValueChange={handleOrderByChange}>
+          <SelectTrigger className="w-[180px] bg-neutral-100 dark:bg-neutral-950">
+            <SelectValue placeholder="Select Order" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="asc">Ascending</SelectItem>
+            <SelectItem value="desc">Descending</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+    </div>
   )
 }
 

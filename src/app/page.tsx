@@ -4,7 +4,7 @@ import Sort from '@/components/Sort'
 import { fetchPhotos } from '@/lib/utils'
 import { Search } from 'lucide-react'
 import Image from 'next/image'
-import { FC } from 'react'
+import { FC, Suspense } from 'react'
 
 export type ImageType = {
   id: string
@@ -52,7 +52,9 @@ const Home: FC<{ searchParams: SearchParams }> = async ({ searchParams }) => {
           </div>
         </div>
       </section>
-      <Sort />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Sort />
+      </Suspense>
       <CardList images={images} searchParams={searchParams} />
     </>
   )

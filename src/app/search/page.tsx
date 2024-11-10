@@ -1,6 +1,6 @@
 import CardList from '@/components/CardList'
 import { searchPhotos } from '@/lib/utils'
-import React, { FC } from 'react'
+import React, { FC, Suspense } from 'react'
 import { ImageType, SearchParams } from '../page'
 import Sort from '@/components/Sort'
 
@@ -14,7 +14,9 @@ const SearchResults: FC<{ searchParams: SearchParams }> = async ({ searchParams 
 
   return searchResults !== null ? (
     <>
-      <Sort />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Sort />
+      </Suspense>
       <CardList images={searchResults.results} searchParams={searchParams} />
     </>
   ) : (
