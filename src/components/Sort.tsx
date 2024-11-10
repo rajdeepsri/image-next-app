@@ -1,6 +1,6 @@
 'use client'
 
-import { FC, useCallback } from 'react'
+import { FC, Suspense, useCallback } from 'react'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select'
 import { useSearchParams, useRouter, usePathname } from 'next/navigation'
 
@@ -29,7 +29,7 @@ const Sort: FC = () => {
   }
 
   return (
-    <>
+    <Suspense>
       <div className="relative bg-neutral-50 dark:bg-neutral-900 pt-5 flex items-center justify-center gap-2 sm:gap-8 flex-col sm:flex-row">
         <div className="flex items-center gap-2">
           <p className="font-medium text-[14px]">Sort By</p>
@@ -56,7 +56,7 @@ const Sort: FC = () => {
           </Select>
         </div>
       </div>
-    </>
+    </Suspense>
   )
 }
 
