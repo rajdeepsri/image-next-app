@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import Card from '@/components/Card'
+import NoResult from '@/components/NoResult'
 import { ImageType, SearchParams } from '@/app/page'
 
 const CardList: FC<{ images: ImageType[]; searchParams: SearchParams }> = async ({
@@ -26,15 +27,17 @@ const CardList: FC<{ images: ImageType[]; searchParams: SearchParams }> = async 
 
   const sortedImages = sortBy && orderBy ? sortImages(images) : images
   return sortedImages.length > 0 ? (
-    <div className="grid place-items-center py-5 sm:py-10 bg-neutral-50 dark:bg-neutral-900">
-      <section className="columns-1 md:columns-3 sm:columns-2 max-w-screen-xl mx-auto">
+    <div className="grid place-items-center pt-5 sm:pt-10 bg-neutral-50 dark:bg-neutral-900">
+      <section className="columns-1 md:columns-3 sm:columns-2 max-w-screen-xl mx-auto px-4">
         {sortedImages.map(image => (
-          <Card key={image.id} image={image} />
+          <div className="w-full flex justify-center" key={image.id}>
+            <Card image={image} />
+          </div>
         ))}
       </section>
     </div>
   ) : (
-    <div className="text-center m-5">No Results found for {q}</div>
+    <NoResult q={q as string} />
   )
 }
 
