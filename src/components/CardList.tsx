@@ -27,7 +27,7 @@ const CardList: FC<{ images: ImageType[]; searchParams: SearchParams }> = async 
 
   const sortedImages = sortBy && orderBy ? sortImages(images) : images
   return sortedImages.length > 0 ? (
-    <div className="grid place-items-center pt-5 sm:pt-10 bg-neutral-50 dark:bg-neutral-900">
+    <div className="grid place-items-center pb-5 sm:pb-10 bg-neutral-50 dark:bg-neutral-900">
       <section className="columns-1 md:columns-3 sm:columns-2 max-w-screen-xl mx-auto px-4">
         {sortedImages.map(image => (
           <div className="w-full flex justify-center" key={image.id}>

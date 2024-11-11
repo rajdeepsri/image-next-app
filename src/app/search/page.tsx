@@ -12,11 +12,16 @@ const SearchResults: FC<{ searchParams: SearchParams }> = async ({ searchParams 
   const { q: query = '' } = (await searchParams) as { q?: string }
   const searchResults: SearchResponse = query ? await searchPhotos(query) : null
 
+  const emptyResponse = query && searchResults?.results.length === 0
+
   return searchResults !== null ? (
     <>
-      <Suspense fallback={<div>Loading...</div>}>
-        <Sort />
-      </Suspense>
+      {!emptyResponse && (
+        <Suspense fallback={<div>Loading...</div>}>
+          <Sort />
+        </Suspense>
+      )}
+
       <CardList images={searchResults.results} searchParams={searchParams} />
     </>
   ) : (
