@@ -29,7 +29,7 @@ const Sort: FC = () => {
   }
 
   return (
-    <div className="relative bg-neutral-50 dark:bg-neutral-900 pt-5 flex items-center justify-center gap-2 sm:gap-8 flex-col sm:flex-row">
+    <div className="relative bg-neutral-50 dark:bg-neutral-900 py-2 sm:py-5 flex items-center justify-center gap-2 sm:gap-8 flex-col sm:flex-row">
       <div className="flex items-center gap-2">
         <p className="font-medium text-[14px]">Sort By</p>
         <Select value={sortBy} onValueChange={handleSortByChange}>
