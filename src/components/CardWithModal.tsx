@@ -31,7 +31,7 @@ const CardWithModal: FC<{ image: ImageType }> = ({ image }) => {
               />
             )}
           </div>
-          <div>
+          <div className="flex flex-col items-start">
             <p className="font-bold text-sm text-neutral-700 dark:text-neutral-200">
               {image.user.name}
             </p>
