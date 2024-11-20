@@ -14,18 +14,22 @@ const Sort: FC = () => {
   const createQueryString = useCallback(
     (name: string, value: string) => {
       const params = new URLSearchParams(searchParams.toString())
-      params.set(name, value)
+      if (value) {
+        params.set(name, value)
+      } else {
+        params.delete(name)
+      }
       return params.toString()
     },
     [searchParams],
   )
 
   const handleSortByChange = (value: string) => {
-    router.replace(`${pathName}?${createQueryString('sortBy', value)}`)
+    router.replace(`${pathName}?${createQueryString('sortBy', value)}`, { scroll: false })
   }
 
   const handleOrderByChange = (value: string) => {
-    router.replace(`${pathName}?${createQueryString('orderBy', value)}`)
+    router.replace(`${pathName}?${createQueryString('orderBy', value)}`, { scroll: false })
   }
 
   return (
