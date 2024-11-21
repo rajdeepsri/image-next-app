@@ -1,4 +1,5 @@
 import CardListWrapper from '@/components/CardListWrapper'
+import LoaderComp from '@/components/Loader'
 import { SearchBar } from '@/components/SearchBar'
 import Image from 'next/image'
 import { FC, Suspense } from 'react'
@@ -46,7 +47,7 @@ const Home: FC<{ searchParams: SearchParams }> = async ({ searchParams }) => {
           <SearchBar />
         </div>
       </section>
-      <Suspense key={q as string} fallback={<div className="text-center my-2">Loading...</div>}>
+      <Suspense key={q as string} fallback={<LoaderComp size={30} />}>
         <CardListWrapper searchParams={searchParams} />
       </Suspense>
     </>
