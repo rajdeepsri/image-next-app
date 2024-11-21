@@ -23,6 +23,7 @@ export type SearchParams = Promise<{
 }>
 
 const Home: FC<{ searchParams: SearchParams }> = async ({ searchParams }) => {
+  const { q } = await searchParams
   return (
     <>
       <section className="w-full h-[60dvh] relative">
@@ -45,7 +46,7 @@ const Home: FC<{ searchParams: SearchParams }> = async ({ searchParams }) => {
           <SearchBar />
         </div>
       </section>
-      <Suspense fallback={<div className="text-center my-2">Loading...</div>}>
+      <Suspense key={q as string} fallback={<div className="text-center my-2">Loading...</div>}>
         <CardListWrapper searchParams={searchParams} />
       </Suspense>
     </>

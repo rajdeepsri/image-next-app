@@ -8,7 +8,7 @@ const SearchResults: FC<{ searchParams: SearchParams }> = async ({ searchParams 
   if (!query) return <div className="text-center m-5">Please enter some text to search</div>
 
   return (
-    <Suspense fallback={<div className="text-center my-2">Loading...</div>}>
+    <Suspense key={query} fallback={<div className="text-center my-2">Loading...</div>}>
       <CardListWrapper searchParams={searchParams} isSearchPage />
     </Suspense>
   )
