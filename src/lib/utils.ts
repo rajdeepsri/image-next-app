@@ -8,6 +8,7 @@ export function cn(...inputs: ClassValue[]) {
 export async function fetchPhotos() {
   const response = await fetch(
     `https://api.unsplash.com/photos?page=1&per_page=12&client_id=${process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY}`,
+    { cache: 'force-cache' },
   )
   const data = await response.json()
   return data
@@ -15,7 +16,7 @@ export async function fetchPhotos() {
 
 export async function searchPhotos(q: string) {
   const searchApi = `https://api.unsplash.com/search/photos?query=${q}&page=1&per_page=12&client_id=${process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY}`
-  const response = await fetch(searchApi)
+  const response = await fetch(searchApi, { cache: 'force-cache' })
   const data = await response.json()
   return data
 }
