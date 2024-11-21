@@ -11,6 +11,7 @@ const CardList: FC<{ images: ImageType[] }> = ({ images }) => {
   const orderBy = searchParams.get('orderBy')
 
   const sortedImages = useMemo(() => {
+    if (!sortBy || !orderBy) return images
     const sorted = [...images]
 
     if (sortBy === 'name') {
