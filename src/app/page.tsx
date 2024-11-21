@@ -1,7 +1,6 @@
-import CardList from '@/components/CardList'
+import CardListWrapper from '@/components/CardListWrapper'
 import { SearchBar } from '@/components/SearchBar'
 import Sort from '@/components/Sort'
-import { fetchPhotos } from '@/lib/utils'
 import Image from 'next/image'
 import { FC, Suspense } from 'react'
 
@@ -25,7 +24,6 @@ export type SearchParams = Promise<{
 }>
 
 const Home: FC<{ searchParams: SearchParams }> = async ({ searchParams }) => {
-  const images: ImageType[] = await fetchPhotos()
   return (
     <>
       <section className="w-full h-[60dvh] relative">
@@ -48,10 +46,10 @@ const Home: FC<{ searchParams: SearchParams }> = async ({ searchParams }) => {
           <SearchBar />
         </div>
       </section>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div className="text-center my-2">Loading...</div>}>
         <Sort />
+        <CardListWrapper searchParams={searchParams} />
       </Suspense>
-      <CardList images={images} searchParams={searchParams} />
     </>
   )
 }

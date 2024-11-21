@@ -1,15 +1,16 @@
-import { FC } from 'react'
+'use client'
+
+import { FC, useMemo } from 'react'
 import Card from '@/components/Card'
-import NoResult from '@/components/NoResult'
-import { ImageType, SearchParams } from '@/app/page'
+import { ImageType } from '@/app/page'
+import { useSearchParams } from 'next/navigation'
 
-const CardList: FC<{ images: ImageType[]; searchParams: SearchParams }> = async ({
-  images,
-  searchParams,
-}) => {
-  const { q, sortBy, orderBy } = await searchParams
+const CardList: FC<{ images: ImageType[] }> = ({ images }) => {
+  const searchParams = useSearchParams()
+  const sortBy = searchParams.get('sortBy')
+  const orderBy = searchParams.get('orderBy')
 
-  const sortImages = (images: ImageType[]) => {
+  const sortedImages = useMemo(() => {
     const sorted = [...images]
 
     if (sortBy === 'name') {
@@ -23,22 +24,13 @@ const CardList: FC<{ images: ImageType[]; searchParams: SearchParams }> = async 
     }
 
     return sorted
-  }
+  }, [images, sortBy, orderBy])
 
-  const sortedImages = sortBy && orderBy ? sortImages(images) : images
-  return sortedImages.length > 0 ? (
-    <div className="grid place-items-center pb-5 sm:pb-10 bg-neutral-50 dark:bg-neutral-900">
-      <section className="columns-1 md:columns-3 sm:columns-2 max-w-screen-xl mx-auto px-4">
-        {sortedImages.map(image => (
-          <div className="w-full flex justify-center" key={image.id}>
-            <Card image={image} />
-          </div>
-        ))}
-      </section>
+  return sortedImages.map(image => (
+    <div className="w-full flex justify-center" key={image.id}>
+      <Card image={image} />
     </div>
-  ) : (
-    <NoResult q={q as string} />
-  )
+  ))
 }
 
 export default CardList
