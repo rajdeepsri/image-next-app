@@ -1,6 +1,5 @@
 import CardListWrapper from '@/components/CardListWrapper'
 import { SearchBar } from '@/components/SearchBar'
-import Sort from '@/components/Sort'
 import Image from 'next/image'
 import { FC, Suspense } from 'react'
 
@@ -47,7 +46,6 @@ const Home: FC<{ searchParams: SearchParams }> = async ({ searchParams }) => {
         </div>
       </section>
       <Suspense fallback={<div className="text-center my-2">Loading...</div>}>
-        <Sort />
         <CardListWrapper searchParams={searchParams} />
       </Suspense>
     </>
