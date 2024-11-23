@@ -1,7 +1,7 @@
 import { ImageType } from '@/app/page'
 import { FC } from 'react'
 import CardWithModal from './CardWithModal'
-import { Dialog, DialogContent, DialogTitle, DialogTrigger } from './ui/dialog'
+import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from './ui/dialog'
 import Modal from './Modal'
 
 const Card: FC<{ image: ImageType }> = ({ image }) => {
@@ -14,6 +14,7 @@ const Card: FC<{ image: ImageType }> = ({ image }) => {
       </DialogTrigger>
       <DialogContent className="p-0">
         <DialogTitle hidden>Modal for card</DialogTitle>
+        <DialogDescription hidden>this is modal</DialogDescription>
         <Modal image={image} />
       </DialogContent>
     </Dialog>
