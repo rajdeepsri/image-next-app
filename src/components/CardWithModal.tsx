@@ -3,18 +3,18 @@ import { formatNumbers } from '@/lib/utils'
 import { ThumbsUp } from 'lucide-react'
 import Image from 'next/image'
 import React, { FC } from 'react'
+import NextImageWithLoader from './NextImageWithLoader'
 
 const CardWithModal: FC<{ image: ImageType }> = ({ image }) => {
   return (
     <>
       <div className="relative">
         {image.urls.small && (
-          <Image
-            src={image.urls.small}
-            alt={image.alt_description || 'img'}
+          <NextImageWithLoader
             width={704}
             height={500}
-            style={{ objectFit: 'contain' }}
+            imageUrl={image.urls.small}
+            alt={image.alt_description || 'img'}
           />
         )}
       </div>

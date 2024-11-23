@@ -9,7 +9,14 @@ const Modal: FC<{ image: ImageType }> = ({ image }) => {
   return (
     <div className="max-w-[50rem] min-w-[90vw] sm:min-w-fit bg-neutral-50 dark:bg-neutral-900 rounded-lg relative">
       <div className="relative h-[20rem] sm:min-w-[50rem] sm:h-[35rem] w-full">
-        {image?.urls?.regular && <NextImageWithLoader imageUrl={image.urls.regular} />}
+        {image?.urls?.regular && (
+          <NextImageWithLoader
+            alt={image.alt_description || 'img'}
+            fill
+            className="rounded-lg"
+            imageUrl={image.urls.regular}
+          />
+        )}
         {image?.links?.download && (
           <a
             href={image.links.download}

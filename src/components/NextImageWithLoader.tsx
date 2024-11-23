@@ -1,26 +1,36 @@
 'use client'
 
-import Image from 'next/image'
+import Image, { ImageProps } from 'next/image'
 import React, { FC, useState } from 'react'
 import LoaderComp from './Loader'
+import clsx from 'clsx'
 
-const NextImageWithLoader: FC<{ imageUrl: string }> = ({ imageUrl }) => {
+type NextImageWithLoaderProps = Omit<ImageProps, 'src'> & {
+  imageUrl: string
+  alt?: string
+}
+
+const NextImageWithLoader: FC<NextImageWithLoaderProps> = ({ imageUrl, alt, ...props }) => {
   const [isLoading, setIsLoading] = useState<boolean>(true)
 
   return (
     <>
       {isLoading && (
-        <div className="flex items-center justify-center h-full w-full">
+        <div className="absolute inset-0 flex items-center justify-center">
           <LoaderComp size={50} />
         </div>
       )}
       <Image
         src={imageUrl}
-        alt="Image"
-        fill
-        style={{ objectFit: 'cover', transition: 'opacity 0.3s ease-in-out' }}
-        className={`rounded-lg ${isLoading ? 'opacity-0' : 'opacity-100'}`}
-        onLoadingComplete={() => setIsLoading(false)}
+        alt={alt || 'img'}
+        {...props}
+        className={clsx(isLoading ? 'opacity-0' : 'opacity-100', props.className || '')}
+        style={{
+          objectFit: props.style?.objectFit || 'cover',
+          transition: 'opacity 0.3s ease-in-out',
+          ...props.style,
+        }}
+        onLoad={() => setIsLoading(false)}
       />
     </>
   )
